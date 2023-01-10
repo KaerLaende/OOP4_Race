@@ -1,5 +1,11 @@
-public class Truck extends Transport{
-    public Truck(String brand, String model, double volumeEngine) {
+package Transport;
+
+import Transport.Transport;
+
+public class Car extends Transport {
+
+
+    public Car(String brand, String model, double volumeEngine) {
         super(brand, model, volumeEngine);
     }
 
