@@ -2,7 +2,7 @@ package Transport;
 
 import Transport.Transport;
 
-public class Truck extends Transport {
+public class Truck extends Transport implements Competing {
     public Truck(String brand, String model, double volumeEngine) {
         super(brand, model, volumeEngine);
     }
@@ -13,12 +13,28 @@ public class Truck extends Transport {
     }
 
     @Override
-    void startMove() {
+    public void startMove() {
+        System.out.println(brand+" начал движение");
+    }
+
+    @Override
+    public void finishMove() {
+        System.out.println(brand+" закончил движение");
+    }
+
+    @Override
+    public void pitStop() {
+        System.out.println(brand+" отправился на Пит-Стоп!");
 
     }
 
     @Override
-    void finishMove() {
+    public void BestLapTime() {
+        System.out.println("Лучшее время круга у "+brand+" составило: "+((int)((40-volumeEngine/2)+Math.random()*(20-volumeEngine*2))));
+    }
 
+    @Override
+    public void maxSpeed() {
+        System.out.println("Максимальная скорость у "+brand+" составила: "+((int)((100+volumeEngine*2)+Math.random()*(volumeEngine*3))));
     }
 }
