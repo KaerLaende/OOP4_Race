@@ -1,8 +1,11 @@
 package Transport;
 
+import Driver.Driver;
+
 import java.util.Objects;
 
-public abstract class Transport {
+public abstract class Transport<T extends Driver> { //Не понимаю как может транспорт наследоваться от водителя?
+    //попросите, пожалуйста, руководство, что бы нам более подробно обьяснили по этим Джинерикам) На видио уроке как то по другому, чем у меня получилось.. в конспектах не понятно.
     protected final String brand;
     protected final String model;
     protected double volumeEngine;

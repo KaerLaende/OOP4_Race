@@ -1,8 +1,9 @@
 package Transport;
+import Driver.DriverB;
+import Driver.DriverC;
 
-import Transport.Transport;
 
-public class Truck extends Transport implements Competing {
+public class Truck extends Transport<DriverC> implements Competing {
     public Truck(String brand, String model, double volumeEngine) {
         super(brand, model, volumeEngine);
     }
@@ -11,6 +12,12 @@ public class Truck extends Transport implements Competing {
     public String toString() {
         return "brand= " + brand + " model=" + model + ", volumeEngine= " + volumeEngine;
     }
+
+
+    public void toAuto(DriverC C){
+        System.out.println(C.getFullName()+" сел за руль "+getBrand()+" "+getModel()+" и будет участвовать в заезде");
+    }
+
 
     @Override
     public void startMove() {

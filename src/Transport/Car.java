@@ -1,13 +1,23 @@
 package Transport;
 
+import Driver.DriverB;
+import Driver.DriverC;
 import Transport.Transport;
 
-public class Car extends Transport implements Competing {
+public class Car extends Transport <DriverB>  implements Competing {
 
 
     public Car(String brand, String model, double volumeEngine) {
         super(brand, model, volumeEngine);
     }
+//      Подскажите как сделать такой метод?
+//    public void toCar(DriverB/*тут подчеркивается*/){
+//        System.out.println(DriverB.fullName/*и тут*/+" сел за руль "+getBrand()+" "+getModel());
+//    }
+
+    public void toAuto(DriverB B){
+        System.out.println(B.getFullName()+" сел за руль "+getBrand()+" "+getModel()+" и будет участвовать в заезде");
+    }//вроде получилось..
 
     @Override
     public String toString() {

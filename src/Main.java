@@ -1,5 +1,9 @@
+import Driver.DriverB;
+import Driver.DriverC;
+import Driver.DriverD;
 import Transport.Bus;
 import Transport.Car;
+import Transport.Transport;
 import Transport.Truck;
 
 public class Main {
@@ -18,56 +22,38 @@ public class Main {
         Truck truck2 = new Truck("Грузовик2", "модель2", 5);
         Truck truck3 = new Truck("Грузовик3", "модель3", 6);
         Truck truck4 = new Truck("Грузовик4", "модель4", 8);
-        System.out.println("Гонка начинается!");
-        lada.startMove();
-        lada.pitStop();
-        lada.finishMove();
-        lada.BestLapTime();
-        lada.maxSpeed();
 
+        DriverB ivanovIvan= new DriverB("Иванов Иван",10);
+        DriverC petrovPetr= new DriverC("Петров Пётр",15);
+        DriverD sunSunich=new DriverD("Сашков Александр",35);
+
+        System.out.println("Гонка начинается!");
+        ferrari.toAuto(ivanovIvan);//Офигеть это работает!! СанСаныча не пускает за руль!!! P.s. 2 часа сегодня мучался на 4 задачку!)))
         ferrari.startMove();
         ferrari.pitStop();
         ferrari.finishMove();
         ferrari.BestLapTime();
         ferrari.maxSpeed();
 
-        mcLaren.startMove();
-        mcLaren.pitStop();
-        mcLaren.finishMove();
-        mcLaren.BestLapTime();
-        mcLaren.maxSpeed();
+        System.out.println();
+        System.out.println();
 
-        lamborghini.startMove();
-        lamborghini.pitStop();
-        lamborghini.finishMove();
-        lamborghini.BestLapTime();
-        lamborghini.maxSpeed();
-        System.out.println();
-        System.out.println();
+        bus1.toAuto(sunSunich);
         bus1.startMove();
         bus1.pitStop();
         bus1.finishMove();
         bus1.BestLapTime();
         bus1.maxSpeed();
 
-        bus4.startMove();
-        bus4.pitStop();
-        bus4.finishMove();
-        bus4.BestLapTime();
-        bus4.maxSpeed();
         System.out.println();
         System.out.println();
 
-        truck1.startMove();
-        truck1.pitStop();
-        truck1.finishMove();
-        truck1.BestLapTime();
-        truck1.maxSpeed();
-
+        truck4.toAuto(petrovPetr);
         truck4.startMove();
         truck4.pitStop();
         truck4.finishMove();
         truck4.BestLapTime();
         truck4.maxSpeed();
     }
+
 }
