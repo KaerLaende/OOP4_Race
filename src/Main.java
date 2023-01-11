@@ -29,9 +29,9 @@ public class Main {
 
         System.out.println("Гонка начинается!");
         ferrari.toAuto(ivanovIvan);//Офигеть это работает!! СанСаныча не пускает за руль!!! P.s. 2 часа сегодня мучался на 4 задачку!)))
-        ferrari.startMove();
-        ferrari.pitStop();
-        ferrari.finishMove();
+        ivanovIvan.pressGaz(ferrari);
+        ivanovIvan.refuel(ferrari);
+        ivanovIvan.stop(ferrari);
         ferrari.BestLapTime();
         ferrari.maxSpeed();
 
@@ -39,9 +39,9 @@ public class Main {
         System.out.println();
 
         bus1.toAuto(sunSunich);
-        bus1.startMove();
-        bus1.pitStop();
-        bus1.finishMove();
+        sunSunich.pressGaz(bus1);
+        sunSunich.refuel(bus1);
+        sunSunich.stop(bus1);
         bus1.BestLapTime();
         bus1.maxSpeed();
 
@@ -49,9 +49,9 @@ public class Main {
         System.out.println();
 
         truck4.toAuto(petrovPetr);
-        truck4.startMove();
-        truck4.pitStop();
-        truck4.finishMove();
+        sunSunich.pressGaz(truck4);
+        sunSunich.refuel(truck4);
+        sunSunich.stop(truck4);
         truck4.BestLapTime();
         truck4.maxSpeed();
     }

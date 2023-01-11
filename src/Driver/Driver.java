@@ -51,17 +51,23 @@ public abstract class Driver {
         }
     }
 
-    // Ниже в этих методах >Должно!< вызываться метод Transport.startMove
-    protected void startMove(){
-        System.out.println(fullName+" нажал на газ"); //А что если мне надо что бы этот метод был переопределен
 
-    }  // но при этом я хочу оставить это тело?
+    public <T extends Transport> void pressGaz(T t) {
+        System.out.print(fullName + " нажал на газ и его ");
+        t.startMove();
+    }
 
-    protected void stop(){
-        System.out.println(fullName+" жмёт тормоз"/*и машина остановилась ->.finishMove()*/);
-    }// как это сделать?
-    protected void refuel(){
-        System.out.println(fullName+" решил заправится");
+        //А что если мне надо что бы этот метод был переопределен
+        // но при этом я хочу оставить это тело?
+
+    public<T extends Transport> void stop(T t){
+        System.out.print(fullName+" жмёт тормоз и ");
+        t.finishMove();
+
+    }
+    public<T extends Transport&Competing> void refuel(T t){
+        System.out.print(fullName+" решил заправится: ");
+        t.pitStop();
     }
 
 

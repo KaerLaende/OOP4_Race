@@ -59,7 +59,7 @@ public abstract class Transport<T extends Driver> { //Не понимаю как
     }
 //_____________________________________________________________________________________
 
-    abstract void startMove();
-    abstract void finishMove();
+    public abstract void startMove();
+    public abstract void finishMove();
 
 }
