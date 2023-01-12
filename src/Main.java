@@ -3,7 +3,6 @@ import Driver.DriverC;
 import Driver.DriverD;
 import Transport.Bus;
 import Transport.Car;
-import Transport.Transport;
 import Transport.Truck;
 
 public class Main {
@@ -32,7 +31,7 @@ public class Main {
         ivanovIvan.pressGaz(ferrari);
         ivanovIvan.refuel(ferrari);
         ivanovIvan.stop(ferrari);
-        ferrari.BestLapTime();
+        ferrari.bestLapTime();
         ferrari.maxSpeed();
 
         System.out.println();
@@ -42,7 +41,7 @@ public class Main {
         sunSunich.pressGaz(bus1);
         sunSunich.refuel(bus1);
         sunSunich.stop(bus1);
-        bus1.BestLapTime();
+        bus1.bestLapTime();
         bus1.maxSpeed();
 
         System.out.println();
@@ -52,7 +51,7 @@ public class Main {
         sunSunich.pressGaz(truck4);
         sunSunich.refuel(truck4);
         sunSunich.stop(truck4);
-        truck4.BestLapTime();
+        truck4.bestLapTime();
         truck4.maxSpeed();
     }
 

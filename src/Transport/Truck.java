@@ -10,38 +10,38 @@ public class Truck extends Transport<DriverC> implements Competing {
 
     @Override
     public String toString() {
-        return "brand= " + brand + " model=" + model + ", volumeEngine= " + volumeEngine;
+        return "brand= " + getBrand() + " model=" + getModel() + ", volumeEngine= " + getVolumeEngine();
     }
 
 
-    public void toAuto(DriverC C){
-        System.out.println(C.getFullName()+" сел за руль "+getBrand()+" "+getModel()+" и будет участвовать в заезде");
+    public void toAuto(DriverC c){
+        System.out.println(c.getFullName()+" сел за руль "+getBrand()+" "+getModel()+" и будет участвовать в заезде");
     }
 
 
     @Override
     public void startMove() {
-        System.out.println(brand+" начал движение");
+        System.out.println(getBrand()+" начал медленный разгон");
     }
 
     @Override
     public void finishMove() {
-        System.out.println(brand+" закончил движение");
+        System.out.println(getBrand()+" закончил движение долгим торможением");
     }
 
     @Override
     public void pitStop() {
-        System.out.println(brand+" отправился на Пит-Стоп!");
+        System.out.println(getBrand()+" опустошил весь Пит-Стоп!");
 
     }
 
     @Override
-    public void BestLapTime() {
-        System.out.println("Лучшее время круга у "+brand+" составило: "+((int)((40-volumeEngine/2)+Math.random()*(20-volumeEngine*2))));
+    public void bestLapTime() {
+        System.out.println("Лучшее время круга у "+getBrand()+" составило: "+((int)((40-getVolumeEngine()/2)+Math.random()*(20-getVolumeEngine()*2))));
     }
 
     @Override
     public void maxSpeed() {
-        System.out.println("Максимальная скорость у "+brand+" составила: "+((int)((100+volumeEngine*2)+Math.random()*(volumeEngine*3))));
+        System.out.println("Максимальная скорость у "+getBrand()+" составила: "+((int)((100+getVolumeEngine()*2)+Math.random()*(getVolumeEngine()*3))));
     }
 }

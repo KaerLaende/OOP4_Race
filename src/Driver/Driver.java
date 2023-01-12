@@ -45,7 +45,7 @@ public abstract class Driver {
             this.experience = experience;
             this.driveLicense=true;
         }
-        else if (experience<0 || experience==0) { //можно убрать IF, но мне понятнее если оставить
+        else  {
             this.experience=0;
             this.driveLicense=false;
         }
