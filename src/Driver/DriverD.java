@@ -1,5 +1,7 @@
 package Driver;
 
+import Transport.Transport;
+
 public class DriverD extends Driver {
     final char categoryLicense ='D';
 

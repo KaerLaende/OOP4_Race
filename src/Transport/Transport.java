@@ -4,11 +4,12 @@ import Driver.Driver;
 
 import java.util.Objects;
 
-public abstract class Transport<T extends Driver> { //Не понимаю как может транспорт наследоваться от водителя?
+public abstract class Transport<T extends Driver, B extends Enum> { //Не понимаю как может транспорт наследоваться от водителя?
     //попросите, пожалуйста, руководство, что бы нам более подробно обьяснили по этим Джинерикам) На видио уроке как то по другому, чем у меня получилось.. в конспектах не понятно.
     private final String brand;
     private final String model;
     private double volumeEngine;
+    private Enum type;
 
 //      ___________________________________________________________________________
     public String getBrand() {
@@ -31,7 +32,7 @@ public abstract class Transport<T extends Driver> { //Не понимаю как
         }
     }
 
-    public Transport(String brand, String model, double volumeEngine) {
+    public Transport(String brand, String model, double volumeEngine,Enum type) {
         if (brand != null && !brand.isEmpty() && !brand.isBlank()) {
             this.brand = brand;
         } else {
@@ -43,6 +44,8 @@ public abstract class Transport<T extends Driver> { //Не понимаю как
             this.model = "model";
         }
         setVolumeEngine(volumeEngine);
+        this.type=type;
+
     }
 
     @Override
@@ -61,5 +64,13 @@ public abstract class Transport<T extends Driver> { //Не понимаю как
 
     public abstract void startMove();
     public abstract void finishMove();
+    public abstract void printType();
 
+    public Enum getType() {
+        return type;
+    }
+
+    public void setType(Enum type) {
+        this.type = type;
+    }
 }
