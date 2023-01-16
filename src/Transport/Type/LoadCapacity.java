@@ -1,18 +1,21 @@
 package Transport.Type;
 
 public enum LoadCapacity {
-    N1 ("с полной массой до 3,5 тонн"),
-    N2 ("с полной массой свыше 3,5 до 12 тонн"),
-    N3 ("с полной массой свыше 12 тонн");
+    N1(0,3.5f),
+    N2(3.5f,12f),
+    N3(12f,0);
 
-    private String translation;
+    private float loadLimitBase;
+    private float loadLimitMax;
 
-    LoadCapacity(String translation) {
-        this.translation = translation;
+    LoadCapacity(float loadLimitBase, float loadLimitMax) {
+        this.loadLimitBase = loadLimitBase;
+        this.loadLimitMax = loadLimitMax;
     }
+
 
     @Override
     public String toString() {
-        return "грузоподьемность: " + translation ;
+        return String.format("Грузоподьемность: %s,%s",(loadLimitBase!=0? "от "+loadLimitBase : ""),(loadLimitMax!=0? " до "+loadLimitMax : "")) ;
     }
 }

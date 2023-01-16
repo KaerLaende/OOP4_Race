@@ -17,6 +17,8 @@ public class Main {
         Bus bus2 = new Bus("Автобус2", "модель 2", 4,PassengerCapacityV2.MEDIUM,null);
         Bus bus3 = new Bus("Автобус3", "модель 3", 5,PassengerCapacityV2.VERY_LARGE,PassengerCapacityV2.VERY_LARGE2);
         Bus bus4 = new Bus("Автобус4", "модель 4", 6,null,null);
+        Bus bus5 = new Bus("Автобус1", "модель 1", 3,PassengerCapacity.VERY_LARGE);
+        System.out.println(bus5);
 
         Truck truck1 = new Truck("Грузовик1", "модель1", 4, LoadCapacityV2.N1, LoadCapacityV2.N2);
         Truck truck2 = new Truck("Грузовик2", "модель2", 5,null,LoadCapacityV2.N1);

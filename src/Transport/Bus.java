@@ -3,9 +3,10 @@ package Transport;
 import Driver.Driver;
 import Driver.DriverD;
 import Transport.Type.PassengerCapacityV2;
+import Transport.Type.PassengerCapacity;
 
 
-public class Bus extends Transport<DriverD, PassengerCapacityV2> implements Competing {
+public class Bus extends Transport<DriverD, Enum> implements Competing {
     private Enum<PassengerCapacityV2> typeMin;
     private Enum<PassengerCapacityV2> typeMax;
     public static final char CATYGORY = 'D';
@@ -16,13 +17,21 @@ public class Bus extends Transport<DriverD, PassengerCapacityV2> implements Comp
         this.typeMax = typeMax;
     }
 
+    public Bus(String brand, String model, double volumeEngine, PassengerCapacity type) {
+        super(brand, model, volumeEngine, type);
+    }
+
     public char getCATYGORY() {
         return CATYGORY;
     }
 
+//    @Override
+//    public String toString() {
+//        return "brand= " + getBrand() + " model=" + getModel() + ", volumeEngine= " + getVolumeEngine() + ", " + printPassengerCapacity();
+//    }
     @Override
     public String toString() {
-        return "brand= " + getBrand() + " model=" + getModel() + ", volumeEngine= " + getVolumeEngine() + ", " + printPassengerCapacity();
+        return "brand= " + getBrand() + " model=" + getModel() + ", volumeEngine= " + getVolumeEngine() + ", " + getType();
     }
 
 
