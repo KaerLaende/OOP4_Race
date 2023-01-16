@@ -4,6 +4,7 @@ import Transport.Competing;
 import Transport.Transport;
 
 public abstract class Driver {
+    public static Object DriverC;
     /*abstract*/ char categoryLicense; //<- мне надо что бы была переменная которую обязательно надо определить в наследниках, как это сделать?
     final String fullName;
     boolean driveLicense;

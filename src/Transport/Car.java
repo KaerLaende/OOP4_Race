@@ -1,5 +1,6 @@
 package Transport;
 
+import Driver.Driver;
 import Driver.DriverB;
 import Transport.Type.BodyType;
 
@@ -54,4 +55,13 @@ public class Car extends Transport <DriverB, BodyType>  implements Competing {
             System.out.println(getType());
         }
     }
+
+    public<T extends Driver> void getDiagnosed(T t){ //переопределение под Категорию B у Грузовиков
+        if (!t.isDriveLicense()|| !t.getClass().equals(DriverB.class)){
+            System.out.println("Диагностика не пройдена");
+        }else {
+            System.out.println("Диагностика пройдена");
+        }
+    }
+
 }

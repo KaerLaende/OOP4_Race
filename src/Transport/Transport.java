@@ -1,6 +1,9 @@
 package Transport;
 
 import Driver.Driver;
+import Driver.DriverC;
+import Driver.DriverB;
+import Driver.DriverD;
 
 import java.util.Objects;
 
@@ -73,4 +76,12 @@ public abstract class Transport<T extends Driver, B extends Enum> { //Не по�
     public void setType(Enum type) {
         this.type = type;
     }
+    public<T extends Driver> void getDiagnosed(T t){
+        if (t.isDriveLicense()/*если есть права*/&& !t.getClass().equals(DriverD.class)/*и если Категория не D (по условию кроме автобусов)*/){
+            System.out.println("Диагностика пройдена");
+        }else {
+            System.out.println("Автобусы диагностику проходить не могут");
+        }
+    }
+
 }

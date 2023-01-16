@@ -1,4 +1,5 @@
 package Transport;
+import Driver.Driver;
 import Driver.DriverC;
 import Transport.Type.LoadCapacity;
 import Transport.Type.LoadCapacityV2;
@@ -60,7 +61,7 @@ public class Truck<d> extends Transport<DriverC, LoadCapacityV2> implements Comp
         System.out.println("Максимальная скорость у "+getBrand()+" составила: "+((int)((100+getVolumeEngine()*2)+Math.random()*(getVolumeEngine()*3))));
     }
 
-// прямо как "Задание" из "Подсказки-2" =)))
+
     public String printLoadCapacity() {
         if (typeMin==null&&typeMax==LoadCapacityV2.N1){
             return  " до 3.5 тонн";
@@ -70,6 +71,13 @@ public class Truck<d> extends Transport<DriverC, LoadCapacityV2> implements Comp
             return " свыше 12 тонн";
         }
         else return "это один из 100500 вариантов бесмыслиц. Уж лучше использовать Enum без дополнительной 'гибкости'";
-    } // Я не хочу описывать эти 100500 возможных вариантов, если можно просто сделать как Я первый раз с четким конечным списком констант(прямо как определение Enum) из 3х возможных вариантов
+    }
+    public<T extends Driver> void getDiagnosed(T t){ //переопределение под Категорию С у Грузовиков
+        if (!t.isDriveLicense()|| !t.getClass().equals(DriverC.class)){
+            System.out.println("Диагностика не пройдена");
+        }else {
+            System.out.println("Диагностика пройдена");
+        }
+    }
 
 }
