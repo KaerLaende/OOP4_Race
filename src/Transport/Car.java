@@ -5,13 +5,18 @@ import Driver.DriverB;
 import Transport.Type.BodyType;
 
 public class Car extends Transport <DriverB, BodyType>  implements Competing {
+    public static final char CATYGORY = 'B';
 
+    public char getCATYGORY() {
+        return CATYGORY;
+    }
 
-    public Car(String brand, String model, double volumeEngine,BodyType type) {
+    public Car(String brand, String model, double volumeEngine, BodyType type) {
         super(brand, model, volumeEngine,type);
     }
 
-    public void toAuto(DriverB b){
+    public void toAuto(Driver b) throws CantClassCompatibleException {
+        tryСompatibleClass(b);
         System.out.println(b.getFullName()+" сел за руль "+getBrand()+" "+getModel()+" и будет участвовать в заезде");
     }
 
@@ -56,12 +61,11 @@ public class Car extends Transport <DriverB, BodyType>  implements Competing {
         }
     }
 
-    public<T extends Driver> void getDiagnosed(T t){ //переопределение под Категорию B у Грузовиков
+    public<T extends Driver> void getDiagnosed(T t)throws CantDunDiagnosedException {
         if (!t.isDriveLicense()|| !t.getClass().equals(DriverB.class)){
-            System.out.println("Диагностика не пройдена");
+            throw new CantDunDiagnosedException();
         }else {
             System.out.println("Диагностика пройдена");
         }
     }
-
 }

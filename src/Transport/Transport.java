@@ -1,9 +1,9 @@
 package Transport;
 
 import Driver.Driver;
-import Driver.DriverC;
-import Driver.DriverB;
 import Driver.DriverD;
+import Driver.DriverB;
+import Driver.DriverC;
 
 import java.util.Objects;
 
@@ -13,8 +13,9 @@ public abstract class Transport<T extends Driver, B extends Enum> { //Не по�
     private final String model;
     private double volumeEngine;
     private Enum type;
+    static char CATYGORY;
 
-//      ___________________________________________________________________________
+    //      ___________________________________________________________________________
     public String getBrand() {
         return brand;
     }
@@ -35,7 +36,7 @@ public abstract class Transport<T extends Driver, B extends Enum> { //Не по�
         }
     }
 
-    public Transport(String brand, String model, double volumeEngine,Enum type) {
+    public Transport(String brand, String model, double volumeEngine, Enum type) {
         if (brand != null && !brand.isEmpty() && !brand.isBlank()) {
             this.brand = brand;
         } else {
@@ -47,7 +48,7 @@ public abstract class Transport<T extends Driver, B extends Enum> { //Не по�
             this.model = "model";
         }
         setVolumeEngine(volumeEngine);
-        this.type=type;
+        this.type = type;
 
     }
 
@@ -66,8 +67,14 @@ public abstract class Transport<T extends Driver, B extends Enum> { //Не по�
 //_____________________________________________________________________________________
 
     public abstract void startMove();
+
     public abstract void finishMove();
+
     public abstract void printType();
+
+    public char getCATYGORY() {
+        return CATYGORY;
+    }
 
     public Enum getType() {
         return type;
@@ -76,11 +83,28 @@ public abstract class Transport<T extends Driver, B extends Enum> { //Не по�
     public void setType(Enum type) {
         this.type = type;
     }
-    public<T extends Driver> void getDiagnosed(T t){
-        if (t.isDriveLicense()/*если есть права*/&& !t.getClass().equals(DriverD.class)/*и если Категория не D (по условию кроме автобусов)*/){
+    public void toAuto(Driver b) throws CantClassCompatibleException {
+        tryСompatibleClass(b);
+        System.out.println(b.getFullName()+" сел за руль "+getBrand()+" "+getModel()+" и будет участвовать в заезде");
+    }
+
+    public <T extends Driver> void getDiagnosed(T t) throws CantDunDiagnosedException {
+        if (t.isDriveLicense()/*если есть права*/ && !t.getClass().equals(DriverD.class)/*и если Категория не D (по условию кроме автобусов)*/) {
             System.out.println("Диагностика пройдена");
-        }else {
-            System.out.println("Автобусы диагностику проходить не могут");
+        } else {
+            System.out.println("Диагностика не пройдена");
+        }
+        throw new UnsupportedOperationException("Автобусы не могут проходить диагностику");
+    }
+
+    // второй способ проверки.
+    public < D extends Driver> void tryСompatibleClass( D d) throws CantClassCompatibleException {
+        System.out.print(getCATYGORY() +" и "+d.getCategoryLicense());
+        if (getCATYGORY()!= d.getCategoryLicense()/*если категории не одинаковы*/) {
+
+            throw new CantClassCompatibleException();
+        } else {
+            System.out.println("классы совместимы");
         }
     }
 

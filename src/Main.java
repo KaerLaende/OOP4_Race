@@ -1,12 +1,12 @@
+import Driver.Driver;
 import Driver.DriverB;
 import Driver.DriverC;
 import Driver.DriverD;
+import Transport.*;
 import Transport.Type.*;
-import Transport.Bus;
-import Transport.Car;
-import Transport.Truck;
 
 public class Main {
+
     public static void main(String[] args) {
         Car lada = new Car("Lada", "2105-ВФТС", 1.6, BodyType.SEDAN);
         Car ferrari = new Car("Ferrari", "F40", 3.9,BodyType.COUPE);
@@ -26,18 +26,37 @@ public class Main {
         DriverB ivanovIvan= new DriverB("Иванов Иван",10);
         DriverC petrovPetr= new DriverC("Петров Пётр",15);
         DriverD sunSunich=new DriverD("Сашков Александр",35);
+        DriverC nullNullich=new DriverC("Null",0);
 
-//      Проверка:
-        lada.printType();
-        System.out.println(lada);
-        System.out.println(truck1);
-        System.out.println(bus1);
-        System.out.println(bus4);
+//     Проверка:
+
+//        try { //ловим автобусов
+//            bus1.getDiagnosed(ivanovIvan);
+//        } catch (CantDunDiagnosed e) {
+//            System.out.println("Произошла ошибка "+ivanovIvan.getCategoryLicense());;
+//        }
+
+        try {//проверяем - диагностика выполняется
+            lada.getDiagnosed(ivanovIvan);
+        } catch (CantDunDiagnosedException e) {
+            System.out.println("Произошла ошибка "+ivanovIvan.getCategoryLicense());;
+        }
+        Main robotDiagnost =new Main();
+        robotDiagnost.useDiagnostic(lada, sunSunich);
+        robotDiagnost.useDiagnostic(bus1, petrovPetr);
+        System.out.println(nullNullich);
+
+
+//        lada.printType();
+//        System.out.println(lada);
+//        System.out.println(truck1);
+//        System.out.println(bus1);
+//        System.out.println(bus4);
 //      Всё работает.
 
 
 //        System.out.println("Гонка начинается!");
-//        ferrari.toAuto(ivanovIvan);
+        ferrari.toAuto(ivanovIvan);
 //        ivanovIvan.pressGaz(ferrari);
 //        ivanovIvan.refuel(ferrari);
 //        ivanovIvan.stop(ferrari);
@@ -47,7 +66,7 @@ public class Main {
 //        System.out.println();
 //        System.out.println();
 //
-//        bus1.toAuto(sunSunich);
+        bus1.toAuto(sunSunich);
 //        sunSunich.pressGaz(bus1);
 //        sunSunich.refuel(bus1);
 //        sunSunich.stop(bus1);
@@ -57,12 +76,26 @@ public class Main {
 //        System.out.println();
 //        System.out.println();
 //
-//        truck4.toAuto(petrovPetr);
+        truck4.toAuto(petrovPetr);
+        //
+        truck4.toAuto(ivanovIvan);
+        // Все проверки успешны!
+
 //        sunSunich.pressGaz(truck4);
 //        sunSunich.refuel(truck4);
 //        sunSunich.stop(truck4);
 //        truck4.bestLapTime();
 //        truck4.maxSpeed();
     }
-
+    // Еще придумал вот такой вариант:
+    public<T extends Transport,D extends Driver>  void useDiagnostic(T t, D d){
+        try {
+            t.getDiagnosed(d);
+        } catch (CantDunDiagnosedException e) {
+            System.out.println(e+"категория трансопрта "+t.getCATYGORY() + " не соответствует водительским правам "+ d.getFullName()+" "+d.getCategoryLicense());
+        }
+        finally {
+            System.out.println("Проверка завершена");
+        }
+    }
 }

@@ -10,6 +10,10 @@ public abstract class Driver {
     boolean driveLicense;
     int experience;
 
+    public char getCategoryLicense() {
+        return categoryLicense;
+    }
+
     public boolean isDriveLicense() {
         return driveLicense;
     }

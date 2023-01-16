@@ -1,13 +1,14 @@
 package Transport;
 import Driver.Driver;
 import Driver.DriverC;
-import Transport.Type.LoadCapacity;
 import Transport.Type.LoadCapacityV2;
 
 
 public class Truck<d> extends Transport<DriverC, LoadCapacityV2> implements Competing {
+    public static final char CATYGORY = 'C';
     private Enum<LoadCapacityV2> typeMin;
     private Enum<LoadCapacityV2> typeMax;
+
     public Truck(String brand, String model, double volumeEngine, LoadCapacityV2 typeMin, LoadCapacityV2 typeMax) {
         super(brand, model, volumeEngine, typeMin);
         this.typeMin=typeMin;
@@ -19,9 +20,8 @@ public class Truck<d> extends Transport<DriverC, LoadCapacityV2> implements Comp
         return "brand= " + getBrand() + " model=" + getModel() + ", volumeEngine= " + getVolumeEngine()+", "+/*дальше идет обработать null в toString.с помощью отдельного метода*/ "с полной массой "+printLoadCapacity();
     }
 
-
-    public void toAuto(DriverC c){
-        System.out.println(c.getFullName()+" сел за руль "+getBrand()+" "+getModel()+" и будет участвовать в заезде");
+    public char getCATYGORY() {
+        return CATYGORY;
     }
 
 
@@ -72,10 +72,13 @@ public class Truck<d> extends Transport<DriverC, LoadCapacityV2> implements Comp
         }
         else return "это один из 100500 вариантов бесмыслиц. Уж лучше использовать Enum без дополнительной 'гибкости'";
     }
-    public<T extends Driver> void getDiagnosed(T t){ //переопределение под Категорию С у Грузовиков
-        if (!t.isDriveLicense()|| !t.getClass().equals(DriverC.class)){
-            System.out.println("Диагностика не пройдена");
-        }else {
+    public<T extends Driver> void getDiagnosed(T t)throws CantDunDiagnosedException { //переопределение под Категорию С у Грузовиков
+        if ( !t.getClass().equals(DriverC.class)){
+            throw new CantDunDiagnosedException();
+        }else if (!t.isDriveLicense()){
+            System.out.println("Необходимо указать тип прав!");
+        }
+        else {
             System.out.println("Диагностика пройдена");
         }
     }

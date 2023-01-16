@@ -1,14 +1,14 @@
 package Transport;
 
-import Driver.DriverB;
+import Driver.Driver;
 import Driver.DriverD;
-import Transport.Type.LoadCapacityV2;
 import Transport.Type.PassengerCapacityV2;
 
 
 public class Bus extends Transport<DriverD, PassengerCapacityV2> implements Competing {
     private Enum<PassengerCapacityV2> typeMin;
     private Enum<PassengerCapacityV2> typeMax;
+    public static final char CATYGORY = 'D';
 
     public Bus(String brand, String model, double volumeEngine, PassengerCapacityV2 typeMin, PassengerCapacityV2 typeMax) {
         super(brand, model, volumeEngine, typeMin);
@@ -16,14 +16,15 @@ public class Bus extends Transport<DriverD, PassengerCapacityV2> implements Comp
         this.typeMax = typeMax;
     }
 
+    public char getCATYGORY() {
+        return CATYGORY;
+    }
+
     @Override
     public String toString() {
         return "brand= " + getBrand() + " model=" + getModel() + ", volumeEngine= " + getVolumeEngine() + ", " + printPassengerCapacity();
     }
 
-    public void toAuto(DriverD d) {
-        System.out.println(d.getFullName() + " сел за руль " + getBrand() + " " + getModel() + " и будет участвовать в заезде");
-    }
 
     @Override
     public void startMove() {
@@ -76,4 +77,8 @@ public class Bus extends Transport<DriverD, PassengerCapacityV2> implements Comp
         }
         return "этот текст никогда не напечатается?";
     }
-}
+    public<T extends Driver> void getDiagnosed(T t)throws CantDunDiagnosedException { //переопределение под Категорию С у Грузовиков
+        System.out.println("Автобусы не проходят диагностику");
+        }
+    }
+
