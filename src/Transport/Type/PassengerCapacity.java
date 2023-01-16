@@ -18,4 +18,5 @@ public enum PassengerCapacity {
     public String toString() {
         return "пассажировместимость: " + translation;
     }
+
 }

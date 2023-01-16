@@ -1,12 +1,10 @@
 import Driver.DriverB;
 import Driver.DriverC;
 import Driver.DriverD;
-import Transport.Type.BodyType;
+import Transport.Type.*;
 import Transport.Bus;
 import Transport.Car;
 import Transport.Truck;
-import Transport.Type.LoadCapacity;
-import Transport.Type.PassengerCapacity;
 
 public class Main {
     public static void main(String[] args) {
@@ -15,15 +13,15 @@ public class Main {
         Car mcLaren = new Car("McLaren", "F1", 6.1,BodyType.HETCHBACK);
         Car lamborghini = new Car("Lamborghini", "Urus", 6.0,BodyType.CROSSOVER);
 
-        Bus bus1 = new Bus("Автобус1", "модель 1", 3, PassengerCapacity.VERY_SMALL);
-        Bus bus2 = new Bus("Автобус2", "модель 2", 4,PassengerCapacity.MEDIUM);
-        Bus bus3 = new Bus("Автобус3", "модель 3", 5,PassengerCapacity.LARGE);
-        Bus bus4 = new Bus("Автобус4", "модель 4", 6,PassengerCapacity.VERY_LARGE);
+        Bus bus1 = new Bus("Автобус1", "модель 1", 3, PassengerCapacityV2.SMALL,PassengerCapacityV2.LARGE);
+        Bus bus2 = new Bus("Автобус2", "модель 2", 4,PassengerCapacityV2.MEDIUM,null);
+        Bus bus3 = new Bus("Автобус3", "модель 3", 5,PassengerCapacityV2.VERY_LARGE,PassengerCapacityV2.VERY_LARGE2);
+        Bus bus4 = new Bus("Автобус4", "модель 4", 6,null,null);
 
-        Truck truck1 = new Truck("Грузовик1", "модель1", 4, LoadCapacity.N1);
-        Truck truck2 = new Truck("Грузовик2", "модель2", 5,LoadCapacity.N2);
-        Truck truck3 = new Truck("Грузовик3", "модель3", 6,LoadCapacity.N3);
-        Truck truck4 = new Truck("Грузовик4", "модель4", 8,LoadCapacity.N3);
+        Truck truck1 = new Truck("Грузовик1", "модель1", 4, LoadCapacityV2.N1, LoadCapacityV2.N2);
+        Truck truck2 = new Truck("Грузовик2", "модель2", 5,null,LoadCapacityV2.N1);
+        Truck truck3 = new Truck("Грузовик3", "модель3", 6,LoadCapacityV2.N2,null);
+        Truck truck4 = new Truck("Грузовик4", "модель4", 8,null,LoadCapacityV2.N2);
 
         DriverB ivanovIvan= new DriverB("Иванов Иван",10);
         DriverC petrovPetr= new DriverC("Петров Пётр",15);
@@ -34,6 +32,7 @@ public class Main {
         System.out.println(lada);
         System.out.println(truck1);
         System.out.println(bus1);
+        System.out.println(bus4);
 //      Всё работает.
 
 

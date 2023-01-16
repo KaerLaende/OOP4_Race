@@ -1,17 +1,21 @@
 package Transport;
-import Driver.DriverB;
 import Driver.DriverC;
 import Transport.Type.LoadCapacity;
+import Transport.Type.LoadCapacityV2;
 
 
-public class Truck extends Transport<DriverC, LoadCapacity> implements Competing {
-    public Truck(String brand, String model, double volumeEngine,LoadCapacity type) {
-        super(brand, model, volumeEngine, type);
+public class Truck<d> extends Transport<DriverC, LoadCapacityV2> implements Competing {
+    private Enum<LoadCapacityV2> typeMin;
+    private Enum<LoadCapacityV2> typeMax;
+    public Truck(String brand, String model, double volumeEngine, LoadCapacityV2 typeMin, LoadCapacityV2 typeMax) {
+        super(brand, model, volumeEngine, typeMin);
+        this.typeMin=typeMin;
+        this.typeMax=typeMax;
     }
 
     @Override
     public String toString() {
-        return "brand= " + getBrand() + " model=" + getModel() + ", volumeEngine= " + getVolumeEngine()+", "+ getType();
+        return "brand= " + getBrand() + " model=" + getModel() + ", volumeEngine= " + getVolumeEngine()+", "+/*дальше идет обработать null в toString.с помощью отдельного метода*/ "с полной массой "+printLoadCapacity();
     }
 
 
@@ -31,6 +35,16 @@ public class Truck extends Transport<DriverC, LoadCapacity> implements Competing
     }
 
     @Override
+    public void printType() {
+        if (getType()==null){
+            System.out.println("Грузоподьемность не указана");
+        }
+        else {
+            System.out.println(getType());
+        }
+    }
+
+    @Override
     public void pitStop() {
         System.out.println(getBrand()+" опустошил весь Пит-Стоп!");
 
@@ -46,13 +60,16 @@ public class Truck extends Transport<DriverC, LoadCapacity> implements Competing
         System.out.println("Максимальная скорость у "+getBrand()+" составила: "+((int)((100+getVolumeEngine()*2)+Math.random()*(getVolumeEngine()*3))));
     }
 
-    @Override
-    public void printType() {
-        if (getType()==null){
-            System.out.println("Грузоподьемность не указана");
+// прямо как "Задание" из "Подсказки-2" =)))
+    public String printLoadCapacity() {
+        if (typeMin==null&&typeMax==LoadCapacityV2.N1){
+            return  " до 3.5 тонн";
+        } else if (typeMin==LoadCapacityV2.N1&&typeMax==LoadCapacityV2.N2) {
+            return " от 3.5 до 12 тонн";
+        } else if (typeMin==LoadCapacityV2.N2&&typeMax==null){
+            return " свыше 12 тонн";
         }
-        else {
-            System.out.println(getType());
-        }
-    }
+        else return "это один из 100500 вариантов бесмыслиц. Уж лучше использовать Enum без дополнительной 'гибкости'";
+    } // Я не хочу описывать эти 100500 возможных вариантов, если можно просто сделать как Я первый раз с четким конечным списком констант(прямо как определение Enum) из 3х возможных вариантов
+
 }
