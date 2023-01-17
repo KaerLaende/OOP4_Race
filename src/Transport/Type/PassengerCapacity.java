@@ -2,16 +2,16 @@ package Transport.Type;
 
 public enum PassengerCapacity {
 
-    VERY_SMALL(0,10),
-    SMALL (0,25),
+    VERY_SMALL(null,10),
+    SMALL (null,25),
     MEDIUM (40,50),
     LARGE (60,80),
     VERY_LARGE (100,120);
 
-    private int loadLimitBase;
-    private int loadLimitMax;
+    private Integer loadLimitBase;
+    private Integer loadLimitMax;
 
-    PassengerCapacity(int loadLimitBase, int loadLimitMax) {
+    PassengerCapacity(Integer loadLimitBase, Integer loadLimitMax) {
         this.loadLimitBase = loadLimitBase;
         this.loadLimitMax = loadLimitMax;
     }
@@ -19,7 +19,7 @@ public enum PassengerCapacity {
 
     @Override
     public String toString() {
-        return String.format("Пассажировместимость: %s,%s человек",(loadLimitBase!=0?/*null - не возможен в свойствах екземпляра Enum*/ "от "+loadLimitBase : ""),(loadLimitMax!=0? " до "+loadLimitMax : "")) ;
+        return String.format("Пассажировместимость: %s,%s человек",(loadLimitBase!=null? "от "+loadLimitBase : ""),(loadLimitMax!=null? " до "+loadLimitMax : "")) ;
     }
 
 }

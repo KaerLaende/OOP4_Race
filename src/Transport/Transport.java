@@ -13,7 +13,7 @@ public abstract class Transport<T extends Driver, B extends Enum> { //Не по�
     private final String model;
     private double volumeEngine;
     private Enum type;
-    static char CATYGORY;
+    private static char CATYGORY;
 
     //      ___________________________________________________________________________
     public String getBrand() {

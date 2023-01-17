@@ -30,6 +30,7 @@ public class Main {
         DriverD sunSunich=new DriverD("Сашков Александр",35);
         DriverC nullNullich=new DriverC("Null",0);
 
+        System.out.println(bus3);
 //     Проверка:
 
 //        try { //ловим автобусов

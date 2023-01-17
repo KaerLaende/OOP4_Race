@@ -1,14 +1,14 @@
 package Transport.Type;
 
 public enum LoadCapacity {
-    N1(0,3.5f),
+    N1(null,3.5f),
     N2(3.5f,12f),
-    N3(12f,0);
+    N3(12f,null);
 
-    private float loadLimitBase;
-    private float loadLimitMax;
+    private Float loadLimitBase;
+    private Float loadLimitMax;
 
-    LoadCapacity(float loadLimitBase, float loadLimitMax) {
+    LoadCapacity(Float loadLimitBase, Float loadLimitMax) {
         this.loadLimitBase = loadLimitBase;
         this.loadLimitMax = loadLimitMax;
     }
@@ -16,6 +16,6 @@ public enum LoadCapacity {
 
     @Override
     public String toString() {
-        return String.format("Грузоподьемность: %s,%s",(loadLimitBase!=0? "от "+loadLimitBase : ""),(loadLimitMax!=0? " до "+loadLimitMax : "")) ;
+        return String.format("Грузоподьемность: %s,%s",(loadLimitBase!=null? "от "+loadLimitBase : ""),(loadLimitMax!=null? " до "+loadLimitMax : "")) ;
     }
 }
