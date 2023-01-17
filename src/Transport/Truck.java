@@ -5,7 +5,7 @@ import Transport.Type.LoadCapacityV2;
 
 
 public class Truck<d> extends Transport<DriverC, LoadCapacityV2> implements Competing {
-    public static final char CATYGORY = 'C';
+    private static final char CATYGORY = 'C';
     private Enum<LoadCapacityV2> typeMin;
     private Enum<LoadCapacityV2> typeMax;
 

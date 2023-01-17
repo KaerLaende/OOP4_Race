@@ -9,7 +9,7 @@ import Transport.Type.PassengerCapacity;
 public class Bus extends Transport<DriverD, Enum> implements Competing {
     private Enum<PassengerCapacityV2> typeMin;
     private Enum<PassengerCapacityV2> typeMax;
-    public static final char CATYGORY = 'D';
+    private static final char CATYGORY = 'D';
 
     public Bus(String brand, String model, double volumeEngine, PassengerCapacityV2 typeMin, PassengerCapacityV2 typeMax) {
         super(brand, model, volumeEngine, typeMin);
