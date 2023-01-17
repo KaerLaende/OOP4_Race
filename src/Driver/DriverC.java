@@ -3,7 +3,7 @@ package Driver;
 import Transport.Transport;
 
 public class DriverC extends Driver{
-    public final char categoryLicense ='C';
+    private final char categoryLicense ='C';
 
     public DriverC(String fullName, int experience) {
         super(fullName, experience);
