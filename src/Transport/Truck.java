@@ -70,8 +70,9 @@ public class Truck<d> extends Transport<DriverC, LoadCapacityV2> implements Comp
         } else if (typeMin==LoadCapacityV2.N2&&typeMax==null){
             return " свыше 12 тонн";
         }
-        else return "это один из 100500 вариантов бесмыслиц. Уж лучше использовать Enum без дополнительной 'гибкости'";
+        else return "...";
     }
+    
     public<T extends Driver> void getDiagnosed(T t)throws CantDunDiagnosedException { //переопределение под Категорию С у Грузовиков
         if ( !t.getClass().equals(DriverC.class)){
             throw new CantDunDiagnosedException();
