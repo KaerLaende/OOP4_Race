@@ -17,8 +17,7 @@ public class Truck<d> extends Transport<DriverC, LoadCapacityV2> implements Comp
 
     @Override
     public String toString() {
-        return "brand= " + getBrand() + " model=" + getModel() + ", volumeEngine= " + getVolumeEngine()+", "+/*дальше идет обработать null в toString.с помощью отдельного метода*/ "с полной массой "+printLoadCapacity();
-    }
+        return "Трэк: "+ getBrand() + getModel();}
 
     public char getCATYGORY() {
         return CATYGORY;

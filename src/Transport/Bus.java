@@ -31,7 +31,7 @@ public class Bus extends Transport<DriverD, Enum> implements Competing {
 //    }
     @Override
     public String toString() {
-        return "brand= " + getBrand() + " model=" + getModel() + ", volumeEngine= " + getVolumeEngine() + ", " + getType();
+        return "Бус: " + getBrand() + getModel();
     }
 
 

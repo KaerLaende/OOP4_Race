@@ -22,7 +22,7 @@ public class Car extends Transport <DriverB, BodyType>  implements Competing {
 
     @Override
     public String toString() {
-        return "Автомобиль: " + getBrand() + ", model=" + getModel() + ", volumeEngine= " + getVolumeEngine() + ", "+ getType();
+        return "Автомобиль: " + getBrand() + getModel();
     }
 
     @Override

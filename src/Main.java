@@ -2,13 +2,12 @@ import Driver.Driver;
 import Driver.DriverB;
 import Driver.DriverC;
 import Driver.DriverD;
+import Driver.AutoService;
 import Engineer.Engineer;
 import Transport.*;
 import Transport.Type.*;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 public class Main {
 
@@ -42,38 +41,45 @@ public class Main {
         Engineer thirdE= new Engineer<Bus>("Третий механик Д", "Вторая компания Д");
 
         // создаем лист и добавляем все авто:
-        List<Transport> allTransportList = new ArrayList<>();
+        Set<Transport> allTransportList = new HashSet<>();
         allTransportList.add(lada)  ;//allTransportList.add(ferrari);allTransportList.add(mcLaren);allTransportList.add(lamborghini);
         allTransportList.add(truck1);//allTransportList.add(truck2);allTransportList.add(truck3);allTransportList.add(truck4);
         allTransportList.add(bus1)  ;//allTransportList.add(bus2);allTransportList.add(bus3);allTransportList.add(bus4);
 
         // создаем список водителей:
-        List<Driver> allDriverList= new ArrayList<>();
+        Set<Driver> allDriverList= new HashSet<>();
         allDriverList.add(ivanovIvan);allDriverList.add(petrovPetr);allDriverList.add(sunSunich);
-
+        allDriverList.add(ivanovIvan);
+        System.out.println(allDriverList);
         // создаем список механиков:
-        List<Engineer> allEngineerList = new ArrayList<>();
+        Set<Engineer> allEngineerList = new HashSet();
         allEngineerList.add(firstE);allEngineerList.add(secondE);allEngineerList.add(thirdE);
 
-        //печатаем авто ее водителя и ее маханика:
-        for (int i = 0; i < 3; i++) {
-            allTransportList.get(i).toAuto(allDriverList.get(i));
-            allEngineerList.get(i).addTransport(allTransportList.get(i));
-            System.out.println();
-        }
-        // добавляем еще по машине к очереди на ремонт механиков:
-        firstE.addTransport(ferrari);
-        secondE.addTransport(truck2);
-        thirdE.addTransport(bus4);
-        // ремонтируем технику:
 
-        for (int i = 0; i < allEngineerList.size(); i++) {
-            allEngineerList.get(i).getSizeQueue(); //= 2
-            allEngineerList.get(i).service(); // не удалаем из очереди
-            allEngineerList.get(i).repair(); // удаляем отремонтированную
-            allEngineerList.get(i).getSizeQueue();// осталась =1
-            System.out.println();
+        /***  Дополнение к прошлой работе ***/
+        //создаем очередь в автосервис и проводим ремонты:
+        AutoService autoServiceB = new AutoService();
+        autoServiceB.addTransport(lada, firstE);
+        firstE.service(autoServiceB.queue);
+        firstE.repair(autoServiceB.queue);
+
+        //печатаем авто ее водителя:
+       int i=0;
+        for (Transport transport:allTransportList) {
+            for (Driver driver : allDriverList) {
+                if (transport.getCATYGORY()== driver.getCategoryLicense()/*если категории одинаковы*/){transport.toAuto(driver);}
+            }
         }
+
+        /***  Домашка по (Хеш и хеш-функции, множества) HashMap ***/
+
+        Map<Transport, Engineer> autoAndEngineer = new HashMap<>();
+        autoAndEngineer.put(lada, firstE);
+        autoAndEngineer.put(truck1,secondE);
+        autoAndEngineer.put(bus1,thirdE);autoAndEngineer.put(bus2,thirdE);
+        System.out.println(autoAndEngineer);
+
+
 
 
 
