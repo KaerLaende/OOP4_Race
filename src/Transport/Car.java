@@ -1,27 +1,28 @@
 package Transport;
 
+import Driver.Driver;
 import Driver.DriverB;
-import Driver.DriverC;
-import Transport.Transport;
+import Transport.Type.BodyType;
 
-public class Car extends Transport <DriverB>  implements Competing {
+public class Car extends Transport <DriverB, BodyType>  implements Competing {
+    public static final char CATYGORY = 'B';
 
-
-    public Car(String brand, String model, double volumeEngine) {
-        super(brand, model, volumeEngine);
+    public char getCATYGORY() {
+        return CATYGORY;
     }
-//      Подскажите как сделать такой метод?
-//    public void toCar(DriverB/*тут подчеркивается*/){
-//        System.out.println(DriverB.fullName/*и тут*/+" сел за руль "+getBrand()+" "+getModel());
-//    }
 
-    public void toAuto(DriverB b){
+    public Car(String brand, String model, double volumeEngine, BodyType type) {
+        super(brand, model, volumeEngine,type);
+    }
+
+    public void toAuto(Driver b) throws CantClassCompatibleException {
+        tryСompatibleClass(b);
         System.out.println(b.getFullName()+" сел за руль "+getBrand()+" "+getModel()+" и будет участвовать в заезде");
-    }//вроде получилось..
+    }
 
     @Override
     public String toString() {
-        return "brand= " + getBrand() + " model=" + getModel() + ", volumeEngine= " + getVolumeEngine();
+        return "Автомобиль: " + getBrand() + getModel();
     }
 
     @Override
@@ -48,5 +49,23 @@ public class Car extends Transport <DriverB>  implements Competing {
     @Override
     public void maxSpeed() {
         System.out.println("Максимальная скорость у "+getBrand()+" составила: "+((int)((200+getVolumeEngine()*10)+Math.random()*(getVolumeEngine()*4))));
+    }
+
+    @Override
+    public void printType() {
+        if (getType()==null){ //В Задании 2 написано если тип не указан.. Как его можно не указать в моём случае?
+            System.out.println("тип кузова машины не указан");
+        }
+        else {
+            System.out.println(getType());
+        }
+    }
+
+    public<T extends Driver> void getDiagnosed(T t)throws CantDunDiagnosedException {
+        if (!t.isDriveLicense()|| !t.getClass().equals(DriverB.class)){
+            throw new CantDunDiagnosedException();
+        }else {
+            System.out.println("Диагностика пройдена");
+        }
     }
 }

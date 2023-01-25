@@ -1,16 +1,21 @@
 package Transport;
 
 import Driver.Driver;
+import Driver.DriverD;
+import Driver.DriverB;
+import Driver.DriverC;
 
 import java.util.Objects;
 
-public abstract class Transport<T extends Driver> { //Не понимаю как может транспорт наследоваться от водителя?
+public abstract class Transport<T extends Driver, B extends Enum> { //Не понимаю как может транспорт наследоваться от водителя?
     //попросите, пожалуйста, руководство, что бы нам более подробно обьяснили по этим Джинерикам) На видио уроке как то по другому, чем у меня получилось.. в конспектах не понятно.
     private final String brand;
     private final String model;
     private double volumeEngine;
+    private Enum type;
+    private static char CATYGORY;
 
-//      ___________________________________________________________________________
+    //      ___________________________________________________________________________
     public String getBrand() {
         return brand;
     }
@@ -31,7 +36,7 @@ public abstract class Transport<T extends Driver> { //Не понимаю как
         }
     }
 
-    public Transport(String brand, String model, double volumeEngine) {
+    public Transport(String brand, String model, double volumeEngine, Enum type) {
         if (brand != null && !brand.isEmpty() && !brand.isBlank()) {
             this.brand = brand;
         } else {
@@ -43,6 +48,8 @@ public abstract class Transport<T extends Driver> { //Не понимаю как
             this.model = "model";
         }
         setVolumeEngine(volumeEngine);
+        this.type = type;
+
     }
 
     @Override
@@ -60,6 +67,45 @@ public abstract class Transport<T extends Driver> { //Не понимаю как
 //_____________________________________________________________________________________
 
     public abstract void startMove();
+
     public abstract void finishMove();
+
+    public abstract void printType();
+
+    public char getCATYGORY() {
+        return CATYGORY;
+    }
+
+    public Enum getType() {
+        return type;
+    }
+
+    public void setType(Enum type) {
+        this.type = type;
+    }
+    public void toAuto(Driver b) throws CantClassCompatibleException {
+        tryСompatibleClass(b);
+        System.out.println(b.getFullName()+" сел за руль "+getBrand()+" "+getModel()+" и будет участвовать в заезде");
+    }
+
+    public <T extends Driver> void getDiagnosed(T t) throws CantDunDiagnosedException {
+        if (t.isDriveLicense()/*если есть права*/ && !t.getClass().equals(DriverD.class)/*и если Категория не D (по условию кроме автобусов)*/) {
+            System.out.println("Диагностика пройдена");
+        } else {
+            System.out.println("Диагностика не пройдена");
+        }
+        throw new UnsupportedOperationException("Автобусы не могут проходить диагностику");
+    }
+
+    // второй способ проверки.
+    public < D extends Driver> void tryСompatibleClass( D d) throws CantClassCompatibleException {
+        System.out.print(getCATYGORY() +" и "+d.getCategoryLicense());
+        if (getCATYGORY()!= d.getCategoryLicense()/*если категории не одинаковы*/) {
+
+            throw new CantClassCompatibleException();
+        } else {
+            System.out.println("классы совместимы");
+        }
+    }
 
 }

@@ -1,7 +1,9 @@
 package Driver;
 
+import Transport.Transport;
+
 public class DriverD extends Driver {
-    final char categoryLicense ='D';
+    private final char categoryLicense ='D';
 
     public DriverD(String fullName, int experience) {
         super(fullName, experience);
@@ -11,5 +13,12 @@ public class DriverD extends Driver {
         return categoryLicense;
     }
 
-
+    @Override
+    public String toString() {
+        return "DriverD{" +
+                "categoryLicense=" + categoryLicense +
+                ", fullName='" + fullName + '\'' +
+                ", experience=" + experience +
+                '}';
+    }
 }

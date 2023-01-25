@@ -3,11 +3,18 @@ package Driver;
 import Transport.Competing;
 import Transport.Transport;
 
+import java.util.Objects;
+
 public abstract class Driver {
-    /*abstract*/ char categoryLicense; //<- мне надо что бы была переменная которую обязательно надо определить в наследниках, как это сделать?
+
+    char categoryLicense;
     final String fullName;
     boolean driveLicense;
     int experience;
+
+    public char getCategoryLicense() {
+        return categoryLicense;
+    }
 
     public boolean isDriveLicense() {
         return driveLicense;
@@ -51,24 +58,33 @@ public abstract class Driver {
         }
     }
 
-
     public <T extends Transport> void pressGaz(T t) {
         System.out.print(fullName + " нажал на газ и его ");
         t.startMove();
     }
-
-        //А что если мне надо что бы этот метод был переопределен
-        // но при этом я хочу оставить это тело?
 
     public<T extends Transport> void stop(T t){
         System.out.print(fullName+" жмёт тормоз и ");
         t.finishMove();
 
     }
+
     public<T extends Transport&Competing> void refuel(T t){
         System.out.print(fullName+" решил заправится: ");
         t.pitStop();
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Driver driver = (Driver) o;
+        return categoryLicense == driver.categoryLicense && driveLicense == driver.driveLicense && experience == driver.experience && fullName.equals(driver.fullName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(categoryLicense, fullName, driveLicense, experience);
+    }
 
 }
