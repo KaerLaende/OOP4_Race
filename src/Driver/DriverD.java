@@ -13,5 +13,12 @@ public class DriverD extends Driver {
         return categoryLicense;
     }
 
-
+    @Override
+    public String toString() {
+        return "DriverD{" +
+                "categoryLicense=" + categoryLicense +
+                ", fullName='" + fullName + '\'' +
+                ", experience=" + experience +
+                '}';
+    }
 }

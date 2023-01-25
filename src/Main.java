@@ -41,16 +41,29 @@ public class Main {
         Engineer thirdE= new Engineer<Bus>("Третий механик Д", "Вторая компания Д");
 
         // создаем лист и добавляем все авто:
-        Set<Transport> allTransportList = new HashSet<>();
-        allTransportList.add(lada)  ;//allTransportList.add(ferrari);allTransportList.add(mcLaren);allTransportList.add(lamborghini);
-        allTransportList.add(truck1);//allTransportList.add(truck2);allTransportList.add(truck3);allTransportList.add(truck4);
-        allTransportList.add(bus1)  ;//allTransportList.add(bus2);allTransportList.add(bus3);allTransportList.add(bus4);
+       Set<Transport> allTransportList = new HashSet<>();
+//        allTransportList.add(lada)  ;//allTransportList.add(ferrari);allTransportList.add(mcLaren);allTransportList.add(lamborghini);
+//        allTransportList.add(truck1);//allTransportList.add(truck2);allTransportList.add(truck3);allTransportList.add(truck4);
+//        allTransportList.add(bus1)  ;//allTransportList.add(bus2);allTransportList.add(bus3);allTransportList.add(bus4);
 
-        // создаем список водителей:
+
+        /***  Домашка Коллекции. Часть 3. ***/
         Set<Driver> allDriverList= new HashSet<>();
         allDriverList.add(ivanovIvan);allDriverList.add(petrovPetr);allDriverList.add(sunSunich);
         allDriverList.add(ivanovIvan);
-        System.out.println(allDriverList);
+        StringBuilder builder = new StringBuilder();
+        Iterator<Driver> iterator = allDriverList.iterator();
+        for (Driver driver : allDriverList) { // интересный вывод делает этот цикл....
+            System.out.println(builder.append(driver.getFullName()).append(" > ").append(driver.getExperience()));
+        }
+        while (iterator.hasNext()) { // пробегаемся с помощью iterator по циклу
+            System.out.println(iterator.next());
+        }
+            
+
+
+
+//        System.out.println(allDriverList);
         // создаем список механиков:
         Set<Engineer> allEngineerList = new HashSet();
         allEngineerList.add(firstE);allEngineerList.add(secondE);allEngineerList.add(thirdE);
@@ -64,12 +77,12 @@ public class Main {
         firstE.repair(autoServiceB.queue);
 
         //печатаем авто ее водителя:
-       int i=0;
-        for (Transport transport:allTransportList) {
-            for (Driver driver : allDriverList) {
-                if (transport.getCATYGORY()== driver.getCategoryLicense()/*если категории одинаковы*/){transport.toAuto(driver);}
-            }
-        }
+//       int i=0;
+//        for (Transport transport:allTransportList) {
+//            for (Driver driver : allDriverList) {
+//                if (transport.getCATYGORY()== driver.getCategoryLicense()/*если категории одинаковы*/){transport.toAuto(driver);}
+//            }
+//        }
 
         /***  Домашка по (Хеш и хеш-функции, множества) HashMap ***/
 
@@ -77,7 +90,7 @@ public class Main {
         autoAndEngineer.put(lada, firstE);
         autoAndEngineer.put(truck1,secondE);
         autoAndEngineer.put(bus1,thirdE);autoAndEngineer.put(bus2,thirdE);
-        System.out.println(autoAndEngineer);
+//        System.out.println(autoAndEngineer);
 
 
 
@@ -109,6 +122,11 @@ public class Main {
 
 
     }
+    public static void getAllDriver(){
+
+    }
+
+
     // Еще придумал вот такой вариант:
     public<T extends Transport,D extends Driver>  void useDiagnostic(T t, D d){
         try {
